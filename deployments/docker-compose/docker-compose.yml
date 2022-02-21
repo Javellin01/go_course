@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  go_app_service:
+    build:
+      context: ../..
+      dockerfile: deployments/docker/Dockerfile
+      args:
+        NAME: go_app_service
+
+    container_name: service
+    restart: always
+    ports:
+      - "8080:8080"
+
+
+
+
