@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package blank;
+
+option go_package = "internal/presenters/grpc/pb";
+
+message CampaignID {
+    string id = 1;
+}
+
+message Campaign {
+    CampaignID id = 1;
+	  string name = 2;
+    string devices = 3;
+    string externalId = 4;
+    string status = 5;
+    int32 rate = 6;
+    repeated string segments = 7;
+    repeated string ages = 8;
+    repeated string incomes = 9;
+    repeated string genders = 10;
+    int32 uniqueShowsLimit = 11;
+    string paidEventType = 12;
+    string strategy = 13;
+    repeated string regions = 14;
+    repeated string excludedRegions = 15;
+    bool isActive = 16;
+    repeated SpentItem spentItems = 17;
+    repeated Budget budget = 18;
+    string showCounter = 19;
+}
+
+message SpentItem {
+  int32 totalSpent = 1;
+  int32 cost = 2;
+  int32 profit = 3;
+  float agencyProfit = 4;
+  float charge = 5;
+  float advertiserCharge = 6;
+  float agencyCharge = 8;
+  int32  totalCost = 9;
+}
+
+message Budget {
+  int32 campaignBudget = 1;
+  int32 dailyBudget = 2;
+  int32 currentBudget = 3;
+  int32 currentDailyBudget = 4;
+  int32 externalBudget = 5;
+  int32 externalDailyBudget = 6;
+}

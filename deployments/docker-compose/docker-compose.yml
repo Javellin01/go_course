@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  go_app_service:
+  service:
     build:
       context: ../..
       dockerfile: deployments/docker/Dockerfile
@@ -13,6 +13,13 @@ services:
     ports:
       - "8080:8080"
 
+  cli:
+    build:
+      dockerfile: deployments/docker/cli/Dockerfile
+      args:
+        NAME: cli
 
+    container_name: go_app_cli
+    tty: true
 
 

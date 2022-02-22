@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package blank;
+
+option go_package = "internal/presenters/grpc/pb";
+
+import "api/proto/campaign.proto";
+
+service PlatformsService {
+  rpc CreateCampaign (Campaign) returns (CampaignID) {}
+}
