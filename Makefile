@@ -1,6 +1,5 @@
 PROJECT_NAME ?= go_app
-CLI_CONTAINER ?= ${PROJECT_NAME}_cli
-CLI ?= @docker exec -it ${CLI_CONTAINER}
+CLI ?= @docker exec -it ${PROJECT_NAME}_cli
 VOLUME ?= $(shell pwd)
 
 docker.start.all:
@@ -11,10 +10,8 @@ docker.stop.all:
 
 docker.restart.all: docker.stop.all docker.start.all
 
-cli.run:
-	@docker rm -f ${CLI_CONTAINER}
-	@docker build -t ${PROJECT_NAME}:cli -f ./deployments/docker/cli/Dockerfile .
-	@docker run -it -d --name=${CLI_CONTAINER} -v ${VOLUME}:/go/src/service ${PROJECT_NAME}:cli
+cli:
+	${CLI} /bin/sh
 
 proto.generate:
 	${CLI} protoc --go_out=plugins=grpc:. api/proto/*.proto

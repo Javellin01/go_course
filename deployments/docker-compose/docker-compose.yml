@@ -21,5 +21,19 @@ services:
 
     container_name: go_app_cli
     tty: true
+    volumes:
+      - ../..:/go/src/service
 
+  mongo:
+    build:
+      context: ../..
+      dockerfile: deployments/docker/mongo/Dockerfile
+    container_name: go_app_mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_volume:/data/db
 
+volumes:
+  mongo_volume:

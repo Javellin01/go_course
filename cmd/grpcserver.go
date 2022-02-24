@@ -13,6 +13,7 @@ type Config struct {
 
 func RunGRPC() error {
 	var config Config
+
 	if err := env.Unmarshal(&config); err != nil {
 		return err
 	}
