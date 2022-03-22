@@ -11,6 +11,7 @@ message CampaignID {
 message Campaign {
     CampaignID id = 1;
 	  string name = 2;
+    string advertiserId = 3;
     repeated SpentItem spentItems = 17;
 }
 
@@ -23,13 +24,4 @@ message SpentItem {
   float advertiserCharge = 6;
   float agencyCharge = 8;
   int32  totalCost = 9;
-}
-
-message Budget {
-  int32 campaignBudget = 1;
-  int32 dailyBudget = 2;
-  int32 currentBudget = 3;
-  int32 currentDailyBudget = 4;
-  int32 externalBudget = 5;
-  int32 externalDailyBudget = 6;
 }

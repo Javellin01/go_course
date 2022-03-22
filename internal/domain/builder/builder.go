@@ -6,5 +6,9 @@ import (
 )
 
 type Campaign interface {
-	BuildFromRequest(campaign dto.Campaign) agg.Campaign
+	BuildFromRequest(campaign dto.CampaignRequest) agg.Campaign
+}
+
+type Advertiser interface {
+	BuildFromRequest(advertiser dto.AdvertiseRequest) agg.Advertiser
 }

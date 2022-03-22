@@ -7,9 +7,10 @@ import (
 )
 
 func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.Campaign) (*pb.CampaignID, error) {
-	campaignDto := dto.Campaign{
-		Name:       campaign.Name,
-		SpentItems: make([]dto.SpentItem, len(campaign.SpentItems)),
+	campaignDto := dto.CampaignRequest{
+		Name:         campaign.Name,
+		AdvertiserId: campaign.AdvertiserId,
+		SpentItems:   make([]dto.SpentItem, len(campaign.SpentItems)),
 	}
 
 	for i, item := range campaign.SpentItems {
@@ -31,4 +32,18 @@ func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.Campai
 	}
 
 	return &pb.CampaignID{Id: createdId}, nil
+}
+
+func (s PlatformsServer) FindCampaign(ctx context.Context, id *pb.CampaignID) (*pb.Campaign, error) {
+	c, err := s.usecase.Campaign.Find(id.Id)
+	if err != nil {
+		return nil, err
+	}
+	response := &pb.CampaignResponse{
+		Campaign: &pb.Campaign{
+			Id:   &pb.CampaignID{Id: c.Campaign.ID},
+			Name: c.Campaign.Name,
+		},
+	}
+	return response, nil
 }

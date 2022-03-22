@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package blank;
+
+option go_package = "internal/presenters/grpc/pb";
+
+message AdvertiserID {
+  string id = 1;
+}
+
+message Advertiser {
+    AdvertiserID id = 1;
+    string name = 2;
+    float balance = 3;
+}

@@ -6,10 +6,16 @@ import (
 )
 
 type Usecase struct {
-	Campaign Campaign
+	Campaign   Campaign
+	Advertiser Advertiser
 }
 
 type Campaign interface {
-	Create(campaign dto.Campaign) (string, error)
+	Create(campaign dto.CampaignRequest) (string, error)
 	Find(id string) (agg.Campaign, error)
+}
+
+type Advertiser interface {
+	Create(advertiser dto.AdvertiseRequest) (string, error)
+	Find(id string) (agg.Advertiser, error)
 }

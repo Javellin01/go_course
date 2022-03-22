@@ -14,7 +14,7 @@ func NewCampaignBuilder() Campaign {
 	return CampaignBuilder{}
 }
 
-func (cb CampaignBuilder) BuildFromRequest(dto dto.Campaign) agg.Campaign {
+func (cb CampaignBuilder) BuildFromRequest(dto dto.CampaignRequest) agg.Campaign {
 	campaign := entity.Campaign{
 		ID:         dto.ID,
 		Name:       dto.Name,
@@ -33,9 +33,18 @@ func (cb CampaignBuilder) BuildFromRequest(dto dto.Campaign) agg.Campaign {
 			TotalCost:        item.TotalCost,
 		}
 	}
+	t := agg.Campaign{
+		Campaign:     campaign,
+		AdvertiserId: dto.AdvertiserId,
+		Timestamp: vo.Timestamp{
+			CreatedAt: time.Now(),
+		},
+	}
+	_ = t
 
 	return agg.Campaign{
-		Campaign: campaign,
+		Campaign:     campaign,
+		AdvertiserId: dto.AdvertiserId,
 		Timestamp: vo.Timestamp{
 			CreatedAt: time.Now(),
 		},

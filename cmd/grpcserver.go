@@ -41,8 +41,10 @@ func RunGRPC() error {
 	}
 
 	campaignRepository := mongorepository.NewCampaignRepository(db, time.Second*3)
+	advertiserRepository := mongorepository.NewAdvertiserRepository(db, time.Second*3)
 	usecases := usecase.Usecase{
-		Campaign: usecase.NewCampaignUsecase(ctx, campaignRepository),
+		Campaign:   usecase.NewCampaignUsecase(ctx, campaignRepository),
+		Advertiser: usecase.NewAdvertiserUsecase(ctx, advertiserRepository),
 	}
 
 	handler := grpchandler.NewPlatformsServer(usecases)

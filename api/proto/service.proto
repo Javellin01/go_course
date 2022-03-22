@@ -5,7 +5,10 @@ package blank;
 option go_package = "internal/presenters/grpc/pb";
 
 import "api/proto/campaign.proto";
+import "api/proto/advertiser.proto";
 
 service PlatformsService {
   rpc CreateCampaign (Campaign) returns (CampaignID) {}
+  rpc CreateAdvertiser (Advertiser) returns (AdvertiserID) {}
+  rpc GetCampaign (CampaignID) returns (Campaign) {}
 }

@@ -5,8 +5,7 @@ import (
 	"github.com/Javellin01/go_course/internal/domain/vo"
 )
 
-type Campaign struct {
-	entity.Campaign
-	AdvertiserId string `bson:"advertiserId"`
+type Advertiser struct {
+	entity.Advertiser
 	vo.Timestamp
 }

@@ -21,7 +21,7 @@ func NewCampaignUsecase(ctx context.Context, repo repository.Campaign) Campaign 
 	}
 }
 
-func (cu CampaignUsecase) Create(dto dto.Campaign) (string, error) {
+func (cu CampaignUsecase) Create(dto dto.CampaignRequest) (string, error) {
 	campaign := builder.NewCampaignBuilder().BuildFromRequest(dto)
 	ctx, cancel := context.WithTimeout(cu.ctx, time.Second*3)
 	defer cancel()
