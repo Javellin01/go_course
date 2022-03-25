@@ -38,21 +38,10 @@ func (c Campaign) BuildObjectUpdate(campaign agg.Campaign) bson.M {
 
 func (c Campaign) MapSingle(r *mongo.SingleResult) (agg.Campaign, error) {
 	var aggregate agg.Campaign
-	var campaign entity.Campaign
-	var timestamp vo.Timestamp
 
 	if err := r.Decode(&aggregate); err != nil {
 		return agg.Campaign{}, err
 	}
-	if err := r.Decode(&campaign); err != nil {
-		return agg.Campaign{}, err
-	}
-	if err := r.Decode(&timestamp); err != nil {
-		return agg.Campaign{}, err
-	}
-
-	aggregate.Campaign = campaign
-	aggregate.Timestamp = timestamp
 
 	return aggregate, nil
 }

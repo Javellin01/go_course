@@ -8,11 +8,17 @@ message CampaignID {
     string id = 1;
 }
 
-message Campaign {
+message CampaignRequest {
     CampaignID id = 1;
 	  string name = 2;
     string advertiserId = 3;
     repeated SpentItem spentItems = 17;
+}
+
+message CampaignResponse {
+  CampaignID id = 1;
+  string name = 2;
+  string advertiserId = 3;
 }
 
 message SpentItem {

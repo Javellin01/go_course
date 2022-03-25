@@ -15,6 +15,7 @@ services:
 
   cli:
     build:
+      context: ../..
       dockerfile: deployments/docker/cli/Dockerfile
       args:
         NAME: cli

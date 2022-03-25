@@ -6,7 +6,7 @@ import (
 	"github.com/Javellin01/go_course/internal/presenters/grpc/pb"
 )
 
-func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.Campaign) (*pb.CampaignID, error) {
+func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.CampaignRequest) (*pb.CampaignID, error) {
 	campaignDto := dto.CampaignRequest{
 		Name:         campaign.Name,
 		AdvertiserId: campaign.AdvertiserId,
@@ -34,16 +34,14 @@ func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.Campai
 	return &pb.CampaignID{Id: createdId}, nil
 }
 
-func (s PlatformsServer) FindCampaign(ctx context.Context, id *pb.CampaignID) (*pb.Campaign, error) {
+func (s PlatformsServer) FindCampaign(ctx context.Context, id *pb.CampaignID) (*pb.CampaignResponse, error) {
 	c, err := s.usecase.Campaign.Find(id.Id)
 	if err != nil {
 		return nil, err
 	}
 	response := &pb.CampaignResponse{
-		Campaign: &pb.Campaign{
-			Id:   &pb.CampaignID{Id: c.Campaign.ID},
-			Name: c.Campaign.Name,
-		},
+		Id:   &pb.CampaignID{Id: c.Campaign.ID},
+		Name: c.Campaign.Name,
 	}
 	return response, nil
 }

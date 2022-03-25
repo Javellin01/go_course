@@ -6,7 +6,7 @@ import (
 )
 
 type Campaign struct {
-	entity.Campaign
-	AdvertiserId string `bson:"advertiserId"`
-	vo.Timestamp
+	entity.Campaign `bson:",inline"`
+	AdvertiserId    string `bson:"advertiserId"`
+	vo.Timestamp    `bson:",inline"`
 }

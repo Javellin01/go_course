@@ -8,7 +8,7 @@ import "api/proto/campaign.proto";
 import "api/proto/advertiser.proto";
 
 service PlatformsService {
-  rpc CreateCampaign (Campaign) returns (CampaignID) {}
+  rpc CreateCampaign (CampaignRequest) returns (CampaignID) {}
+  rpc FindCampaign (CampaignID) returns (CampaignResponse) {}
   rpc CreateAdvertiser (Advertiser) returns (AdvertiserID) {}
-  rpc GetCampaign (CampaignID) returns (Campaign) {}
 }
