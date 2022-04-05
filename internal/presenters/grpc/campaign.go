@@ -4,12 +4,13 @@ import (
 	"context"
 	"github.com/Javellin01/go_course/internal/domain/dto"
 	"github.com/Javellin01/go_course/internal/presenters/grpc/pb"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func (s PlatformsServer) CreateCampaign(ctx context.Context, campaign *pb.CampaignRequest) (*pb.CampaignID, error) {
 	campaignDto := dto.CampaignRequest{
 		Name:         campaign.Name,
-		AdvertiserId: campaign.AdvertiserId,
+		AdvertiserId: primitive.ObjectIDFromHex(campaign.AdvertiserId),
 		SpentItems:   make([]dto.SpentItem, len(campaign.SpentItems)),
 	}
 
